@@ -10,6 +10,11 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+@property (assign) IBOutlet NSWindow *window;
+@property (strong) NSViewController* currentViewController;
+
+- (IBAction)showAuthView:(id)sender;
+- (IBAction)showCatalogView:(id)sender;
 
 @end
 

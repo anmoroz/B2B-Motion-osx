@@ -12,9 +12,6 @@
 
 @interface CatalogViewController ()
 
-@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
-@property (weak) IBOutlet NSView *searchToolBar;
-
 @end
 
 @implementation CatalogViewController
@@ -22,41 +19,81 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.filter = [NSMutableDictionary dictionary];
+    
+    self.catalogPageNumber = 1;
+    [self.prewPageButton setHidden:YES];
+    
     [self.progressIndicator startAnimation:self];
-    [self loadProducts];
+    [self fetchData];
 }
 
-- (void) loadProducts {
-    
+-(void)fetchData;
+{
     [self showProgressIndicator];
+
+    if (self.catalogPageNumber > 1) {
+        [self.filter setObject:[NSNumber numberWithInteger:self.catalogPageNumber] forKey:@"page"];
+    }
     
-    [ProductService getProductsWithLimit:20 block:^(NSMutableArray *products, NSError *error) {
-        NSLog(@"products %@", products);
-        if (!error) {
-            self.products = products;
-            
-            [self.productTableView reloadData];
-            [self hideProgressIndicator];
-            [self.searchToolBar setHidden:NO];
-            
-            //[self.tableView reloadData];
-            
-            //self.post = posts.firstObject;
-            //[self savePost:self.post];
-            
-            //if (completionHandler) {
-            //    completionHandler(self.post != nil ? NCUpdateResultNewData : NCUpdateResultNoData);
-            //}
-            
-        } else {
-            NSLog(@"error %@", error);
-            //if (completionHandler) {
-            //    completionHandler(NSUpdateResultFailed);
-            //}
-        }
-    }];
+    [ProductService fetchList:self.filter
+                                    block:^(NSHTTPURLResponse *response, NSMutableArray *products, NSError *error)
+     {
+         if (!error) {
+             if ([response respondsToSelector:@selector(allHeaderFields)]) {
+                 NSDictionary *dictionary = [response allHeaderFields];
+                 self.catalogTotalPage = [[dictionary valueForKey:@"X-Pagination-Page-Count"] integerValue];
+             }
+
+             self.products = products;
+             
+             
+             NSLog(@"catalogPageNumber %ld", self.catalogPageNumber);
+             
+             [self.productTableView reloadData];
+             [self hideProgressIndicator];
+             [self.searchToolBar setHidden:NO];
+             
+             if (self.catalogPageNumber > 1) {
+                 [self.prewPageButton setHidden:NO];
+             } else {
+                 [self.prewPageButton setHidden:YES];
+             }
+             if (self.catalogPageNumber == self.catalogTotalPage) {
+                 [self.nextPageButton setHidden:YES];
+             } else {
+                 [self.nextPageButton setHidden:NO];
+             }
+             
+         } else {
+             NSLog(@"error %@", error);
+         }
+     }];
 }
 
+- (IBAction)searchAction:(id)sender
+{
+    NSArray *key = @[@"filters[keyword]"];
+    NSArray *data = [[NSArray alloc] initWithObjects:[self.productSearchField stringValue], nil];
+    self.filter = [[NSMutableDictionary alloc]initWithObjects:data forKeys:key];
+    [self fetchData];
+}
+
+- (IBAction)nextPage:(id)sender;
+{
+    ++self.catalogPageNumber;
+    if (self.catalogTotalPage <= self.catalogPageNumber) {
+        self.catalogPageNumber = 1;
+    }
+    [self fetchData];
+    
+}
+
+- (IBAction)prevPage:(id)sender;
+{
+    --self.catalogPageNumber;
+    [self fetchData];
+}
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     
@@ -96,7 +133,6 @@
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    NSLog(@"Count products %lu", [self.products count]);
     return [self.products count];
 }
 

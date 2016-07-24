@@ -11,10 +11,10 @@
 
 @interface ProductService : NSObject
 
++ (NSURLSessionDataTask *)fetchList:(NSMutableDictionary *)filter
+                              block:(void (^)(NSHTTPURLResponse *response, NSMutableArray *products, NSError *error))block;
+
 + (NSURLSessionDataTask *)getOneProducts:(NSString *)productId
                                    block:(void (^)(NSObject *product, NSError *error))block;
-
-+ (NSURLSessionDataTask *)getProductsWithLimit:(NSUInteger)limit
-                                         block:(void (^)(NSMutableArray *products, NSError *error))block;
 
 @end

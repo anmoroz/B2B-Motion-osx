@@ -37,30 +37,32 @@
             }];
 }
 
-
-+ (NSURLSessionDataTask *)getProductsWithLimit:(NSUInteger)limit
-                                         block:(void (^)(NSMutableArray *products, NSError *error))block
++ (NSURLSessionDataTask *)fetchList:(NSMutableDictionary *)filter
+                              block:(void (^)(NSHTTPURLResponse *response, NSMutableArray *products, NSError *error))block
 {
+    [filter setObject:[NSNumber numberWithInt:PRODUCTS_PER_PAGE] forKey:@"per-page"];
+    
     return [[B2BHttpClient sharedClient] GET:@"product"
-                                  parameters:@{ @"per-page": [NSString stringWithFormat:@"%lu", limit] }
+                                  parameters:filter
                                     progress:nil
                                      success:^(NSURLSessionDataTask * __unused task, id JSON)
-    {
-        NSMutableArray *mutableProducts = [NSMutableArray array];
-        
-        for (NSDictionary *attributes in JSON) {
-            B2BProduct *product = [[B2BProduct alloc] initWithAttributes:attributes];
-            [mutableProducts addObject:product];
-        }
-
-        if (block) {
-            block(mutableProducts, nil);
-        }
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        if (block) {
-            block([NSMutableArray array], error);
-        }
-    }];
+            {
+                NSMutableArray *mutableProducts = [NSMutableArray array];
+                
+                for (NSDictionary *attributes in JSON) {
+                    B2BProduct *product = [[B2BProduct alloc] initWithAttributes:attributes];
+                    [mutableProducts addObject:product];
+                }
+                
+                if (block) {
+                    
+                    block((NSHTTPURLResponse*)task.response, mutableProducts, nil);
+                }
+            } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+                if (block) {
+                    block((NSHTTPURLResponse*)task.response, [NSMutableArray array], error);
+                }
+            }];
 }
 
 @end

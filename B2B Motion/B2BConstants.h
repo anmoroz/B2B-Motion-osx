@@ -10,3 +10,4 @@
 #define BASE_URL @"http://avsexpress.ru/"
 #define BASE_API_URL @"http://avsexpress.ru/api/v1/"
 
+#define PRODUCTS_PER_PAGE 20

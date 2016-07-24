@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #include "CatalogViewController.h"
 #include "AuthViewController.h"
+#import "B2BUser.h"
 
 @interface AppDelegate ()
 
@@ -61,8 +62,13 @@
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [self showAuthView:self];
-    //[self showCatalogView:self];
+    
+    NSString *token = [[B2BUser sharedInstance] token];
+    if (token) {
+        [self showCatalogView:self];
+    } else {
+        [self showAuthView:self];
+    }
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

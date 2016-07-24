@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
@@ -7,6 +7,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CatalogViewController">
             <connections>
+                <outlet property="nextPageButton" destination="W9Y-I8-UCH" id="VrL-da-B2O"/>
+                <outlet property="prewPageButton" destination="6wc-Z6-N9x" id="hK7-pQ-SQl"/>
+                <outlet property="productSearchField" destination="L1G-iB-GEN" id="wui-lM-5Qc"/>
                 <outlet property="productTableView" destination="wyn-xh-CcQ" id="a65-jb-tVb"/>
                 <outlet property="progressIndicator" destination="5TU-Qg-wNU" id="3wT-s9-vP2"/>
                 <outlet property="searchToolBar" destination="5jV-NC-R6k" id="NjK-yR-NsF"/>
@@ -20,14 +23,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="bp2-xp-3bu">
-                    <rect key="frame" x="0.0" y="0.0" width="629" height="351"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <rect key="frame" x="0.0" y="38" width="629" height="312"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <clipView key="contentView" id="GMd-Lh-PGz">
-                        <rect key="frame" x="1" y="0.0" width="627" height="350"/>
+                        <rect key="frame" x="1" y="0.0" width="627" height="311"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView identifier="Product" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" headerView="UiV-rh-aY6" viewBased="YES" id="wyn-xh-CcQ">
-                                <rect key="frame" x="0.0" y="0.0" width="680" height="333"/>
+                                <rect key="frame" x="0.0" y="0.0" width="627" height="294"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="2" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -161,7 +164,7 @@
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn identifier="PriceColumn" width="70" minWidth="10" maxWidth="3.4028234663852886e+38" id="KRt-vY-bEH">
+                                    <tableColumn identifier="PriceColumn" width="17" minWidth="10" maxWidth="3.4028234663852886e+38" id="KRt-vY-bEH">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="ЦЕНА, РУБ">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -175,11 +178,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="oWX-sJ-lIc">
-                                                <rect key="frame" x="609" y="1" width="70" height="17"/>
+                                                <rect key="frame" x="609" y="1" width="17" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="xDj-wg-9LN">
-                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="17" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="f2H-p5-tBc">
                                                             <font key="font" metaFont="system"/>
@@ -203,8 +206,8 @@
                         </subviews>
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
-                    <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="XSa-5d-747">
-                        <rect key="frame" x="1" y="334" width="627" height="16"/>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="XSa-5d-747">
+                        <rect key="frame" x="1" y="333" width="618" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="HZR-5e-9IS">
@@ -212,7 +215,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <tableHeaderView key="headerView" id="UiV-rh-aY6">
-                        <rect key="frame" x="0.0" y="0.0" width="680" height="17"/>
+                        <rect key="frame" x="0.0" y="0.0" width="627" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
@@ -222,7 +225,7 @@
                 </progressIndicator>
                 <customView hidden="YES" id="5jV-NC-R6k">
                     <rect key="frame" x="0.0" y="350" width="629" height="43"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
                         <searchField wantsLayer="YES" verticalHuggingPriority="750" id="L1G-iB-GEN">
                             <rect key="frame" x="30" y="10" width="579" height="22"/>
@@ -232,11 +235,36 @@
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </searchFieldCell>
+                            <connections>
+                                <action selector="searchAction:" target="-2" id="gzl-Rw-HdG"/>
+                            </connections>
                         </searchField>
                     </subviews>
                 </customView>
+                <button verticalHuggingPriority="750" id="6wc-Z6-N9x">
+                    <rect key="frame" x="1" y="-3" width="38" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                    <buttonCell key="cell" type="push" title="&lt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EVE-tk-4Yx">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="prevPage:" target="-2" id="3n9-Tk-qdg"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" id="W9Y-I8-UCH">
+                    <rect key="frame" x="33" y="-3" width="38" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                    <buttonCell key="cell" type="push" title="&gt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Yju-8D-KNC">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="nextPage:" target="-2" id="x9v-NF-qrj"/>
+                    </connections>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="-412.5" y="432.5"/>
+            <point key="canvasLocation" x="-662.5" y="425.5"/>
         </customView>
     </objects>
     <resources>

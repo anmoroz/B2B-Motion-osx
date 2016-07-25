@@ -23,14 +23,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="bp2-xp-3bu">
-                    <rect key="frame" x="0.0" y="38" width="629" height="312"/>
+                    <rect key="frame" x="0.0" y="34" width="629" height="316"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <clipView key="contentView" id="GMd-Lh-PGz">
-                        <rect key="frame" x="1" y="0.0" width="627" height="311"/>
+                        <rect key="frame" x="1" y="0.0" width="627" height="315"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView identifier="Product" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" headerView="UiV-rh-aY6" viewBased="YES" id="wyn-xh-CcQ">
-                                <rect key="frame" x="0.0" y="0.0" width="627" height="294"/>
+                                <rect key="frame" x="0.0" y="0.0" width="627" height="298"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="2" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>

@@ -51,6 +51,7 @@
 		559531641D391475000B3AAB /* B2BConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = B2BConstants.h; sourceTree = "<group>"; };
 		559531651D392CD2000B3AAB /* B2BProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = B2BProduct.h; sourceTree = "<group>"; };
 		559531661D392CD2000B3AAB /* B2BProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = B2BProduct.m; sourceTree = "<group>"; };
+		55A7A1431D46507500ECAD21 /* B2B Motion.profdata */ = {isa = PBXFileReference; lastKnownFileType = file; path = "B2B Motion.profdata"; sourceTree = "<group>"; };
 		55A9CBDB1D3E6B1000A50C62 /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
 		55A9CBDC1D3E6B1000A50C62 /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
 		55A9CBDD1D3E6B1000A50C62 /* AuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
@@ -111,11 +112,20 @@
 			name = Lib;
 			sourceTree = "<group>";
 		};
+		55A7A1421D46507500ECAD21 /* OptimizationProfiles */ = {
+			isa = PBXGroup;
+			children = (
+				55A7A1431D46507500ECAD21 /* B2B Motion.profdata */,
+			);
+			path = OptimizationProfiles;
+			sourceTree = "<group>";
+		};
 		55DF7D171D382A4A00236BDC = {
 			isa = PBXGroup;
 			children = (
 				55DF7D221D382A4A00236BDC /* B2B Motion */,
 				55DF7D211D382A4A00236BDC /* Products */,
+				55A7A1421D46507500ECAD21 /* OptimizationProfiles */,
 			);
 			sourceTree = "<group>";
 		};
@@ -390,6 +400,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "B2B Motion/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -402,6 +413,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "B2B Motion/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
